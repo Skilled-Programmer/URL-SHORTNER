@@ -16,7 +16,7 @@ document.getElementById("getFormData").addEventListener("submit",async (e)=>{
         body:JSON.stringify(data),
     });
     const result=await res.json();
-    if(!result.success){
+    if(!result.success){``
         btn.disabled = false;
         btn.innerText = "Shorten";
         alert(result.message);

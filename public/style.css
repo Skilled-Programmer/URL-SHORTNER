@@ -16,7 +16,6 @@ body{
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    border-radius: 1rem;
 }
 .header{
     text-align: center;

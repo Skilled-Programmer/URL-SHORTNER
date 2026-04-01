@@ -13,6 +13,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static("public"));
 const errorPage404=path.join(import.meta.dirname,"public","errorPage404.html")
 await connectDb();
+app.get("/favicon.ico", (req, res) => res.status(204));
 app.post("/shorten",saveLink);
 app.get("/:shortCode",async (req,res)=>{
     let db=getDb();

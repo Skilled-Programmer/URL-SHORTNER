@@ -1,5 +1,6 @@
 
 document.getElementById("getFormData").addEventListener("submit",async (e)=>{
+    const baseUrl="https://url-shortner-ez48.onrender.com";
     const btn = document.querySelector("#getLinks");
     btn.disabled = true;
     btn.innerText = "Processing...";
@@ -8,7 +9,7 @@ document.getElementById("getFormData").addEventListener("submit",async (e)=>{
     const data=Object.fromEntries(formData);
 
     try {
-        const res=await fetch("/shorten",{
+        const res=await fetch(`${baseUrl}/shorten`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json",

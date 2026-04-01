@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL SHORTNER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="header">URL SHORTNER</div>
+        <div class="input">
+            <form id="getFormData">
+                <div>
+                    <label for="loginLink">LONG LNK</label>
+                    <input type="text" name="longLink" placeholder="enter long link" required>
+                </div>
+                <div>
+                    <label for="shortCode">SHORT CODE</label>
+                    <input type="text" name="shortCode" placeholder="enter shortcode">
+                </div>
+
+                <div class="btn">
+                    <button type="submit" id="getLinks">SHORTNER</button>
+                </div>
+            </form>
+        </div>
+        <div class="allData">
+          <h3>YOUR SHORT LINKS</h3>
+          <ul class="shortedLinks">
+            <li class="allData"></li>
+          </ul>
+        </div>
+    </div>
+    
+    <script src="/main.js"></script>
+</body>
+</html>

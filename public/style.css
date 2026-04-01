@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main{
+    border: 1px solid black;
+    width: 25rem;
+    height: 35rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+.header{
+    text-align: center;
+    margin: 1rem 0;
+}
+label{
+    display: block;
+}
+.input{
+    width: 100%;
+    height: 12rem;
+}
+input{
+    margin: 1rem 0;
+}
+.btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+button{
+    width: 5rem;
+    height: 3rem;
+    border-radius: 0.5rem ;
+    cursor: pointer;
+    border: none;
+}
+input{
+    width: 100%;
+    padding-left: 0.5rem;
+    height: 2rem;
+}
+.allData{
+    margin-top: 2.6rem;
+}
+.allData h3{
+    text-align: center; 
+}
+.allData li{
+    padding-left: 1rem;
+    list-style: none;
+    margin: 0.7rem 0;
+}

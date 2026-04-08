@@ -8,7 +8,7 @@ document.getElementById("getFormData").addEventListener("submit",async (e)=>{
     const data=Object.fromEntries(formData);
 
     try {
-        const res=await fetch("/shorten",{
+        const res=await fetch("https://url-shortner-ez48.onrender.com/shorten",{
         method:"POST",
         headers:{
             "Content-Type":"application/json",

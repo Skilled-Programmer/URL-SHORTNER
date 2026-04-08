@@ -34,7 +34,7 @@ export const saveLink=async (req,res)=>{
             longLink,
             shortCode,
         });
-        res.json({ success:true,shortUrl: `http://localhost:3000/${shortCode}`});
+        res.json({ success:true,shortUrl: `https://url-shortner-ez48.onrender.com/${shortCode}`});
     }catch(err){
         console.error(err);
         return res.status(500).json({success:false,message:"Server Error"});

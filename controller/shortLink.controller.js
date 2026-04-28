@@ -1,7 +1,7 @@
 import {nanoid} from "nanoid";
 import urlDb from "../models/shortLinkSchema.js";
 import userDb from "../models/userSchema.js";
-import { checkShortCodeLength, checkValidShortCode } from "../services/auth.service.js";
+import { checkShortCodeLength, checkValidShortCode, isSafeUrl, normalizedLongLink } from "../services/auth.service.js";
 export const saveLink=async (req,res)=>{
     try{
         
@@ -9,11 +9,19 @@ export const saveLink=async (req,res)=>{
         if(!longLink){
            return res.json({success:false,message:"Long Link Required"});
         }
+        const normalizeLongLink=normalizedLongLink(longLink);
         try {
-            new URL(longLink);
+            new URL(normalizeLongLink);
         } catch (error) {
             return res.json({success:false,message:"please enter a valid URl"});
         }
+        if(!isSafeUrl(normalizeLongLink)){
+            return res.status(400).json({
+                success:false,
+                message:"Use Valid Link"
+            });
+        }
+        
         if(!shortCode){
             shortCode=nanoid(8);
         }
@@ -29,7 +37,7 @@ export const saveLink=async (req,res)=>{
         }
         await urlDb.create({
             user:req.user.id,
-            longLink:longLink,
+            longLink:normalizeLongLink,
             shortCode:shortCode,
         });
         res.json({success:true,message:"ShortCode Created Succefully"});

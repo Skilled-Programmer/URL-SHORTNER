@@ -36,3 +36,27 @@ export const checkValidShortCode=(shortCode)=>{
 export const checkShortCodeLength=(shortCode)=>{
     return shortCode.length <= 15;
 }
+
+export const isSafeUrl=(url)=> {
+    const BLOCKED_HOSTS = ["localhost", "127.0.0.1"];
+    try {
+        const parsed = new URL(url);
+        if (!["http:", "https:"].includes(parsed.protocol)) {
+            return false;
+        }
+
+        if (BLOCKED_HOSTS.includes(parsed.hostname)) {
+            return false;
+        }
+
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+export const normalizedLongLink=(longLink)=>{
+    if (!/^https?:\/\//i.test(longLink)) {
+        longLink = "https://" + longLink;
+    }
+}

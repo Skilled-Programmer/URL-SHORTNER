@@ -56,7 +56,9 @@ export const isSafeUrl=(url)=> {
 }
 
 export const normalizedLongLink=(longLink)=>{
+    longLink=longLink.trim();
     if (!/^https?:\/\//i.test(longLink)) {
         longLink = "https://" + longLink;
     }
+    return longLink;
 }

@@ -12,7 +12,7 @@ document.getElementById("getFormData").addEventListener("submit",async (e)=>{
     const data=Object.fromEntries(formData);
 
     try {
-        const res=await fetch("https://url-shortner-ez48.onrender.com/shorten",{
+        const res=await fetch("/shorten",{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
@@ -40,7 +40,7 @@ document.getElementById("getFormData").addEventListener("submit",async (e)=>{
 const getLinks=async()=>{
     
     try{
-        const res=await fetch("https://url-shortner-ez48.onrender.com/shortCode");
+        const res=await fetch("/shortCode");
 
         const result=await res.json();
         if(!result.success){
@@ -97,7 +97,7 @@ document.addEventListener("click",async (e) => {
         btn.disabled=true;
         const clickedShortCode= e.target.dataset.code;
         try{
-            const res=await fetch(`https://url-shortner-ez48.onrender.com/delete/${clickedShortCode}`,{
+            const res=await fetch(`/delete/${clickedShortCode}`,{
                 method:"DELETE",
                 headers:{
                     "Content-Type":"application/json",

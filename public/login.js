@@ -8,7 +8,7 @@ loginForm.addEventListener("submit",async(e)=>{
     formData=Object.fromEntries(formData);
     // console.log(formData);
     try {
-        const res=await fetch("https://url-shortner-ez48.onrender.com/login",{
+        const res=await fetch("/login",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",

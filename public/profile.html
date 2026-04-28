@@ -60,7 +60,6 @@
 </body>
 <script>
     async function setData() {
-        console.log("helloe trigger");
         const res=await fetch("/myprofile");
         const data=await res.json();
         if(!data.success){

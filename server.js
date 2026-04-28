@@ -49,8 +49,6 @@ app.get("/signup",(req,res)=>{
 });
 app.get("/signin",(req,res)=>{
     if(!req.user){
-        console.log("details=>",req.user);
-        console.log("login page");
         const loginPath=path.join(import.meta.dirname,"public","login.html");
         return res.sendFile(loginPath);
     }
@@ -82,14 +80,12 @@ app.get("/:shortCode",async (req,res)=>{
            return res.status(400).send("Invalid shortcode");
         }
         const shortCodeData=await urlDb.findOne({shortCode}).lean();
-        console.log(shortCodeData);
         if(!shortCodeData){
            return res.status(404).sendFile(errorPage404);
         }
         if (!/^https?:\/\//.test(shortCodeData.longLink)) {
           return res.status(400).send("Invalid URL");
         }
-        console.log("Redirect:", shortCode, "→", shortCodeData.longLink);
         res.redirect(shortCodeData.longLink);
     } catch (error) {
         console.log(error);

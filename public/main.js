@@ -12,7 +12,7 @@ document.getElementById("getFormData").addEventListener("submit",async (e)=>{
     const data=Object.fromEntries(formData);
 
     try {
-        const res=await fetch("/shorten",{
+        const res=await fetch("https://url-shortner-ez48.onrender.com//shorten",{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
@@ -40,14 +40,14 @@ document.getElementById("getFormData").addEventListener("submit",async (e)=>{
 const getLinks=async()=>{
     
     try{
-        const res=await fetch("/shortCode");
+        const res=await fetch("https://url-shortner-ez48.onrender.com//shortCode");
 
         const result=await res.json();
         if(!result.success){
             container.innerHTML="<p>Failed to fetch links</p>";
             return;
         }
-        console.log("Buttons created");
+
         displayShortUrl(result.data);
     }catch(err){
         console.log(err);
@@ -63,7 +63,7 @@ const displayShortUrl=(links)=>{
     container.classList.remove("noShortLink")
     container.innerHTML = "";
     links.forEach(link => {
-        // console.log(link);
+
         const li=document.createElement("li");
         const a=document.createElement("a");
         const buttonDiv=document.createElement("div");
@@ -97,7 +97,7 @@ document.addEventListener("click",async (e) => {
         btn.disabled=true;
         const clickedShortCode= e.target.dataset.code;
         try{
-            const res=await fetch(`/delete/${clickedShortCode}`,{
+            const res=await fetch(`https://url-shortner-ez48.onrender.com//delete/${clickedShortCode}`,{
                 method:"DELETE",
                 headers:{
                     "Content-Type":"application/json",
@@ -115,7 +115,6 @@ document.addEventListener("click",async (e) => {
                 btn.disabled=false;
                 throw new Error("server error");
             }
-            console.log(result.message);
             
         }catch(error){
             console.error(error);

@@ -16,10 +16,8 @@ export const removeToken=(req,res)=>{
     return res.redirect("/signin");
 }
 export const getProfileData=(req,res)=>{
-    console.log("Getprolfile"); 
     const myData=req.user;
     return res.json({success:true,myData});
-    // console.log("my data =>",myData);
 }
 export const isStrongPassword=(password)=>{
     const regex=/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()[\]{}+_=/<>?.,:~|-])[A-Za-z\d!@#$%^&*()[\]{}+_=/<>?.,:~|-]{10,}$/;

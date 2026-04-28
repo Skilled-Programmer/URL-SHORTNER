@@ -24,9 +24,9 @@ function updatePasswordValidUi(id,condition){
 }
 signUp.addEventListener("submit",async(e)=>{
     e.preventDefault();
+    document.querySelector("#registerBtn").textContent="Registering"
     let formData=new FormData(e.target);
     formData=Object.fromEntries(formData);
-    // console.log(formData);
     try {
         const res=await fetch("/register",{
             method:"POST",
@@ -38,6 +38,7 @@ signUp.addEventListener("submit",async(e)=>{
         const data=await res.json();
         // alert(data.message);
         if(!data.success){
+            document.querySelector("#registerBtn").textContent="Sign Up"
             return showPopup(data.success,data.message);
         }
         if(data.success){

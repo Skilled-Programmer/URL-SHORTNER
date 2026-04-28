@@ -6,7 +6,6 @@ import { verifyAuthentication } from "../middleware/verify-auth.middleware.js";
 export const registeration= async (req,res)=>{
 
     try {
-        console.log(req.body);
         const {name,email,mobileNo,password}=req.body;
         if(!name || !email || !mobileNo || !password){
             return res.status(400).json({success:false,message:"All fields are required"});

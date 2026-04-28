@@ -62,7 +62,7 @@
         <i id="hidden" class="fa-solid fa-eye-slash"></i>
         <i id="visiblePass" class="fa-solid fa-eye"></i>
       </div>
-      <button type="submit">Login</button>
+      <button id="loginBtn" type="submit">Login</button>
     </form>
     <div class="notification">
       <p id="notify"></p>
@@ -81,7 +81,6 @@
   const visiblePass = document.getElementById("visiblePass");
   const hidden = document.getElementById("hidden");
   showPass.addEventListener("click",()=>{
-    console.log("bye");
     visiblePass.style.display="none";
     hidden.style.display="block";
     passwordVisibility.type="text";

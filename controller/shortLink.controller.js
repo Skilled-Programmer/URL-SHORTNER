@@ -27,7 +27,6 @@ export const saveLink=async (req,res)=>{
         if(isShortCode){
             return res.json({success:false,message:"ShortCode is already used please try another"});
         }
-        console.log(req.user);
         await urlDb.create({
             user:req.user.id,
             longLink:longLink,

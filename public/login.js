@@ -3,10 +3,10 @@ const notification=document.querySelector(".notification");
 const notify=document.getElementById("notify");
 
 loginForm.addEventListener("submit",async(e)=>{
+    document.querySelector("#loginBtn").textContent="Logging";
     e.preventDefault();
     let formData=new FormData(e.target);
     formData=Object.fromEntries(formData);
-    // console.log(formData);
     try {
         const res=await fetch("/login",{
             method:"POST",
@@ -16,8 +16,8 @@ loginForm.addEventListener("submit",async(e)=>{
             body:JSON.stringify(formData),
         });
         const data=await res.json();
-        console.log(data);
         if(!data.success){
+            document.querySelector("#loginBtn").textContent="Log In";
             showPopup(data.message);
         } 
         if(data.success){
@@ -32,12 +32,10 @@ loginForm.addEventListener("submit",async(e)=>{
 
 function showPopup(message){
     notification.classList.add("active");
-    console.log(notification.classList);
     notify.textContent=message;
 }
 inputs.forEach((input)=>{
     input.addEventListener("focus",()=>{
-        // console.log(notification);
         notification.classList.remove("active");
         notify.textContent="";   
     });

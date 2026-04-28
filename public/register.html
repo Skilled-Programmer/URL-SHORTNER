@@ -132,7 +132,7 @@
             </li>
           </ul>
       </div>
-      <button type="submit">Sign Up</button>
+      <button id="registerBtn" type="submit">Sign Up</button>
     </form>
     <div class="notification">
       <p id="notify"></p>
@@ -153,7 +153,6 @@
   const visiblePass = document.getElementById("visiblePass");
   const hidden = document.getElementById("hidden");
   showPass.addEventListener("click",()=>{
-    console.log("bye");
     visiblePass.style.display="none";
     hidden.style.display="block";
     passwordVisibility.type="text";

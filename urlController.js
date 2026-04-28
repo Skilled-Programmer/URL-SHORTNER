@@ -1,4 +1,4 @@
-import {getDb} from "./db.js";
+// import {getDb} from "./db.js";
 import { nanoid } from "nanoid";
 import path from "path";
 export const saveLink=async (req,res)=>{
@@ -34,7 +34,7 @@ export const saveLink=async (req,res)=>{
             longLink,
             shortCode,
         });
-        res.json({ success:true,shortUrl: `https://url-shortner-ez48.onrender.com/${shortCode}`});
+        res.json({ success:true,shortUrl: `http://localhost:3000/${shortCode}`});
     }catch(err){
         console.error(err);
         return res.status(500).json({success:false,message:"Server Error"});

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; }
+    .container { width: 350px; margin: 100px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 0 10px #aaa; }
+    h2 { text-align: center; }
+    input[type=text], input[type=email], input[type=password],input[type=number] {
+      width: 92.5%;max-width: 100%;  padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px;
+    }
+    button {
+      width: 100%; padding: 10px; background: #28a745; color: #fff; border: none; border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover { background: #1e7e34; }
+    .link { text-align: center; margin-top: 10px; }
+    .inputPassword{
+      position: relative;
+    }
+    .inputPassword i{
+      position: absolute;
+      top: 1.25rem;
+      right: 1rem;
+      cursor: pointer;
+    }
+    /* .fa-eye-slash{
+      display: none;
+    }
+    .fa-eye{
+      display: block;
+    } */
+    #visiblePass{
+      display: block;
+    }
+    #hidden{
+      display: none;
+    }
+    .notification{
+      display: none;
+    }
+    .invalid{
+      color: red;
+    }
+    .notification.valid{
+      display: block;
+      height: 1.8rem;
+      background-image: linear-gradient(to right,rgb(30, 255, 0) 50%,rgb(191, 247, 189));
+      color: green;
+      border-left: 5px solid green;
+    }
+    .notification.invalid{
+      display: block;
+      height: 1.8rem;
+      background-image: linear-gradient(to right,rgb(245, 138, 138) 50%,rgb(231, 216, 216));
+      color: rgb(250, 4, 4);
+      border-left: 5px solid red;
+    }
+    ul{
+      padding: 0;
+    }
+    li{
+      font-size: 0.9rem;
+      list-style: none;
+      line-height: 1.3rem;
+    }
+    .invalid{
+      color: red;
+    }
+    .valid{
+      color: green;
+    }
+    .valid .fa-check{
+      /* display: inline-block; */
+      visibility: visible;
+    }
+    .valid .fa-xmark{
+      display: none;
+      visibility: hidden;
+    }
+    .invalid .fa-check{
+      display: none;
+    }
+    .notification p{
+      padding-left: 0.6rem;
+      padding-top: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Sign Up</h2>
+    <form id="signUp">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="number" name="mobileNo" placeholder="Mobile Number" required>
+      <div class="inputPassword">
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <i id="hidden" class="fa-solid fa-eye-slash"></i>
+        <i id="visiblePass" class="fa-solid fa-eye"></i>
+      </div>
+      
+      <!-- <input type="password" name="confirm_password" placeholder="Confirm Password" required> -->
+      <div>
+          <ul>
+            <li id="uppercase" class="invalid">
+              <i class="fa-solid fa-check"></i>
+              <i class="fa-solid fa-xmark"></i>
+              Password Contain Atleast One UpperCase
+            </li>
+            <li id="lowercase" class="invalid">
+              <i class="fa-solid fa-check"></i>
+              <i class="fa-solid fa-xmark"></i>
+              Password Contain Atleast One LowerCase
+            </li>
+            <li id="hasNumber" class="invalid">
+              <i class="fa-solid fa-check"></i>
+              <i class="fa-solid fa-xmark"></i>
+              Password Contain Atleast One Number
+            </li>
+            <li id="specialChar" class="invalid">
+              <i class="fa-solid fa-check"></i>
+              <i class="fa-solid fa-xmark"></i>
+              Password Contain Atleast 1 Special Character
+            </li>
+            <li id="length" class="invalid">
+              <i class="fa-solid fa-check"></i>
+              <i class="fa-solid fa-xmark"></i>
+              Password Contain Atleast 10 Character
+            </li>
+          </ul>
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+    <div class="notification">
+      <p id="notify"></p>
+    </div>
+    <div class="link">
+      <p>Already have an account? <a href="/signin">Login</a></p>
+    </div>
+    
+  </div>
+</body>
+<!-- <script src="main.js"></script> -->
+<script src="register.js"></script>
+<!-- <script src="../notification/notification.js"></script> -->
+<script>
+  const passwordVisibility = document.getElementById("password");
+  const showPass = document.querySelector(".fa-eye");
+  const hidePass=document.querySelector(".fa-eye-slash");
+  const visiblePass = document.getElementById("visiblePass");
+  const hidden = document.getElementById("hidden");
+  showPass.addEventListener("click",()=>{
+    console.log("bye");
+    visiblePass.style.display="none";
+    hidden.style.display="block";
+    passwordVisibility.type="text";
+  });
+  hidePass.addEventListener("click",()=>{
+    visiblePass.style.display="block";
+    hidden.style.display="none";
+    passwordVisibility.type="password";
+  });
+</script>
+</html>

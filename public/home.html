@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL SHORTNER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navBar">
+            <div class="navBar container">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </div>
+        </div>
+    <div class="main">
+        <div class="header">URL SHORTNER</div>
+           <div class="input">
+                <form id="getFormData">
+                    <div>
+                       <label for="longLink">LONG LNK</label>
+                       <input type="text" name="longLink" placeholder="Enter long link" required>
+                    </div>
+                    <div>
+                       <label for="shortCode">SHORT CODE</label>
+                       <input type="text" name="shortCode" placeholder="Enter shortcode(Optional)">
+                    </div>
+
+                    <div class="btn">
+                       <button type="submit" id="getLinks">SHORTNER</button>
+                    </div>
+                </form>
+            </div>
+               <div class="allData">
+               <h3>YOUR SHORT LINKS</h3>
+
+                <ul class="shortedLinks">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="/main.js"></script>
+</body>
+</html>

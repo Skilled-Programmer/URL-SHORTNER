@@ -5,16 +5,45 @@
 }
 body{
     height: 100vh;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.navBar{
+    width: 100%;
+    height: 10rem;
+    background-color: rgb(230, 214, 214);
+}
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 1.4rem;
+    font-size: 1.4rem;
+}
+.container li{
+    list-style:none;
+}
+.container a{
+    text-decoration: none;
+    color: black;
+}
+.navBar a:hover{
+    color: red;
+    border-bottom: 2px blue solid;
+}
+.navBarAnchor.stylevisi{
+    color: red;
+    border-bottom: 2px blue solid;
 }
 .main{
-    width: 25rem;
+    width: 45rem;
     height: 35rem;
     background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     padding: 1rem;
     margin: 5rem auto;
     background-color: #fff;
@@ -73,7 +102,7 @@ input{
     margin-top: 2.6rem;
 }
 .allData h3{
-    margin-top: 25px;
+    margin-top: 10px;
     font-weight: bold;
     color: #003366;
     text-align: center;
@@ -83,3 +112,79 @@ input{
     list-style: none;
     margin: 0.7rem 0;
 }
+.noShortLink{
+    font-size: 2rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+/* .shortedLinks{
+    display: flex;
+} */
+.shortedLinks li{
+    display: flex;
+    justify-content: space-between ;
+    width: 100%;
+    font-size: 1.2rem;
+}
+.shortedLinks a{
+    text-align: center;
+}
+
+.linksButton button{
+    text-align: center;
+    font-size: 11px;
+    margin: 5px;
+}
+.deleteBtn{
+    background-color: red;
+    color: white;
+
+}
+.deleteBtn:hover{
+    background-color: rgba(255, 0, 0, 0.699);
+}
+.copyBtn{
+    background-color: blue;
+    color: white;
+}
+@media (max-width:775px){
+    .main{
+        width: 94%
+    }
+}
+/* @media (max-width:620px){
+    .main{
+        width: 30rem;
+    }
+}
+@media (max-width:500px){
+    .main{
+        width: 25rem;
+    }
+}
+@media (max-width:430px){
+    .main{
+        width: 23rem;
+    }
+}
+@media (max-width:390px){
+    .main{
+        width: 20rem;
+    }
+}  
+@media (max-width:335px){
+    .main{
+        width: 17rem;
+    }
+    .noShortLink{
+        font-size: 1.7rem;
+    }
+}   
+@media (max-width:3px){
+    .main{
+        width: 20rem;
+    }
+}   */

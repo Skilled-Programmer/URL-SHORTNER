@@ -6,6 +6,9 @@ const userSchema=mongoose.Schema({
     email:{type:String},
     mobileNo:{type:String},
     password:{type:String},
+    isVerify:{type:Boolean},
+    linkCreated:{type:String},
+    linkClicked:{type:String},
 });
 const userDb=mongoose.model("User",userSchema);
 export default userDb;

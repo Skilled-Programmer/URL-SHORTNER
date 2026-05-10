@@ -1,7 +1,10 @@
 import argon2  from "argon2";
+import {nanoid}  from "nanoid";
 import userDb from "../models/userSchema.js";
-import {genarateToken, isStrongPassword, isValidNumber } from "../services/auth.service.js";
+import sessionId from "../models/sessionId.js";
+import {createSessionId, genarateAccessToken, genarateRefreshToken, isStrongPassword, isValidNumber } from "../services/auth.service.js";
 import { verifyAuthentication } from "../middleware/verify-auth.middleware.js";
+import sessionDb from "../models/sessionId.js";
 
 export const registeration= async (req,res)=>{
 
@@ -32,6 +35,9 @@ export const registeration= async (req,res)=>{
           email:normalizedEmail,
           mobileNo:String(mobileNo).trim(),
           password:hashPassword,
+          isVerify:false,
+          linkCreated:0,
+          linkClicked:0
         });
         return res.status(201).json({success:true,message:"Registration is Succesfull"});
     }catch (error) {
@@ -54,11 +60,31 @@ export const logging=async (req,res)=>{
     if(!isValidPassword){
         return res.json({success:false,message:"given credentials are invalid"});
     }
-    const token=genarateToken({
+    const sessionId=createSessionId();
+    const accessToken=genarateAccessToken({
         id:isUSer._id,
+        sessionId,
         name:isUSer.name,
         email:isUSer.email,
     });
-    res.cookie("accessToken",token);
+    
+    const refreshToken=genarateRefreshToken({
+        sessionId,
+        userId:isUSer._id,
+    });
+    await sessionDb.create({
+        sessionId,
+        userId:isUSer._id,
+    });
+    res.cookie("accessToken",accessToken,{
+        httpOnly:true,
+        secure:true,
+        sameSite:"strict",
+    });
+    res.cookie("refreshToken",refreshToken,{
+        httpOnly:true,
+        secure:true,
+        sameSite:"strict",
+    });
     return res.json({success:true,message:"login successfull"});
 }

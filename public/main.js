@@ -12,7 +12,7 @@ document.getElementById("getFormData").addEventListener("submit",async (e)=>{
     const data=Object.fromEntries(formData);
 
     try {
-        const res=await fetch("https://url-shortner-ez48.onrender.com/shorten",{
+        const res=await fetch("/shorten",{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
@@ -40,7 +40,7 @@ document.getElementById("getFormData").addEventListener("submit",async (e)=>{
 const getLinks=async()=>{
     
     try{
-        const res=await fetch("https://url-shortner-ez48.onrender.com/shortCode");
+        const res=await fetch("/shortCode");
 
         const result=await res.json();
         if(!result.success){
@@ -69,6 +69,7 @@ const displayShortUrl=(links)=>{
         const buttonDiv=document.createElement("div");
         const copyButton=document.createElement("Button");
         const deleteButton=document.createElement("Button");
+        const editButton=document.createElement("Button");
         
         a.href=window.location.origin+"/"+link.shortCode;
         a.textContent=window.location.origin+"/"+link.shortCode;        
@@ -77,12 +78,16 @@ const displayShortUrl=(links)=>{
         copyButton.textContent="Copy"
         copyButton.classList.add("copyBtn");
         copyButton.dataset.url=window.location.origin+"/"+link.shortCode;
+        editButton.textContent="Edit";
+        editButton.classList.add("editBtn");
+        editButton.dataset.url=link.shortCode;
         deleteButton.textContent="Delete";
         deleteButton.classList.add("deleteBtn");
         deleteButton.dataset.code=link.shortCode;
         li.appendChild(a);
         li.appendChild(buttonDiv);
         buttonDiv.appendChild(copyButton);
+        buttonDiv.appendChild(editButton);
         buttonDiv.appendChild(deleteButton);
         
         container.appendChild(li);
@@ -97,7 +102,7 @@ document.addEventListener("click",async (e) => {
         btn.disabled=true;
         const clickedShortCode= e.target.dataset.code;
         try{
-            const res=await fetch(`https://url-shortner-ez48.onrender.com/delete/${clickedShortCode}`,{
+            const res=await fetch(`/delete/${clickedShortCode}`,{
                 method:"DELETE",
                 headers:{
                     "Content-Type":"application/json",
@@ -136,5 +141,20 @@ document.addEventListener("click",async (e)=>{
             console.error(error);
 
         }
+    }
+});
+
+
+
+// const editBtn=document.querySelectorAll(".editBtn");
+// editBtn.forEach(editButton=>{
+//     editButton.addEventListener("click",()=>{
+//         console.log("hello");
+//     });
+// });
+document.addEventListener("click",async(e)=>{
+    if(e.target.classList.contains("editBtn")){
+        const url=e.target.dataset.url;
+        return window.location.href=`/update/${url}`;
     }
 });

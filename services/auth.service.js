@@ -1,24 +1,47 @@
 import jwt from "jsonwebtoken";
-
+import { nanoid } from "nanoid";
+import { deleteRefreshToken } from "../controller/refreshAccessToken.controller.js";
 const jwtSecret="urlShortnerJwtKey";
 
 export const verifyJwtToken=(token)=>{
-    return jwt.verify(token,jwtSecret);
+    try {
+        return jwt.verify(token,jwtSecret);
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
 };
-
-export const genarateToken=({id,name,email})=>{
-    return jwt.sign({id,name,email},jwtSecret,{
+export const createSessionId=()=>{
+    return nanoid(5);
+}
+export const genarateAccessToken=({id,sessionId,name,email})=>{
+    return jwt.sign({id,sessionId,name,email},jwtSecret,{
+        expiresIn:"20m",
+    });
+}
+export const genarateRefreshToken=({sessionId,userId})=>{
+    return jwt.sign({sessionId,userId},jwtSecret,{
         expiresIn:"1d",
     });
 }
 export const removeToken=(req,res)=>{
+    const refreshToken=req.cookies.refreshToken;
+    let refreshTokenData;
+    try {
+        refreshTokenData=jwt.verify(refreshToken,jwtSecret);
+    } catch (error) {
+        return false;
+    }
+    deleteRefreshToken(refreshTokenData);
     res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
     return res.redirect("/signin");
 }
-export const getProfileData=(req,res)=>{
-    const myData=req.user;
-    return res.json({success:true,myData});
-}
+// export const getProfileData=(req,res)=>{
+//     console.log("getProfileData:",req.user);
+//     const myData=req.user;
+//     return res.json({success:true,myData});
+// }
 export const isStrongPassword=(password)=>{
     const regex=/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()[\]{}+_=/<>?.,:~|-])[A-Za-z\d!@#$%^&*()[\]{}+_=/<>?.,:~|-]{10,}$/;
     return regex.test(password);

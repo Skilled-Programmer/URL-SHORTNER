@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <style>
-        *{
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
         .navBar{
             width: 100%;
             height: 10rem;
@@ -38,6 +33,7 @@
             flex-direction: column;
         }
     </style>
+    <link rel="stylesheet" href="profile.css">
 </head>
 <body>
     <div class="navBar">
@@ -56,9 +52,48 @@
             </div>
         </div>
     </div>
-    
+    <div class="main">
+        <!-- <div class="header">
+            <div class="logo">
+                <p>A</p>
+            </div>
+            <div class="profileData">
+                <p class="name">Abhishek Mishra</p>
+                <p class="email">abhishek@gmail.com</p>
+            </div>
+        </div>
+        <div class="analytics">
+            <div class="linksCreated">
+                <div class="linksCreatedNum">3</div>
+                <div class="linksCreatedText">LINK CREATED</div>
+            </div>
+            <div class="linksClicked">
+                <div class="linksClickedNum">2</div>
+                <div class="linksClickedText">TOTAL CLICKED</div>
+            </div>
+        </div>
+        <div class="emailVerify">
+            <div class="emailVerifyText"><p>Email Verification:</p></div>
+            <div class="isVerified"><p class="noVerify">Not Verified</p></div>
+            <div class="verifyBtn">
+                <button>Verify Now</button>
+            </div>
+        </div> -->
+    </div>
+    <div class="functions">
+        <div class="editProfile">
+            <button>Edit Profile</button>
+        </div>
+        <div class="changePass">
+            <button>Change Password</button>
+        </div>
+        <div class="logout">
+            <button>Logout</button>
+        </div>
+    </div>
+    <script src="profile.js"></script>
 </body>
-<script>
+<!-- <script>
     async function setData() {
         const res=await fetch("/myprofile");
         const data=await res.json();
@@ -70,5 +105,5 @@
         document.getElementById("userEmail").textContent=myData.email;
     }
     setData();
-</script>
+</script> -->
 </html>

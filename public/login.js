@@ -3,8 +3,8 @@ const notification=document.querySelector(".notification");
 const notify=document.getElementById("notify");
 
 loginForm.addEventListener("submit",async(e)=>{
-    document.querySelector("#loginBtn").textContent="Logging";
     e.preventDefault();
+    document.querySelector("#loginBtn").textContent="Logging";
     let formData=new FormData(e.target);
     formData=Object.fromEntries(formData);
     try {

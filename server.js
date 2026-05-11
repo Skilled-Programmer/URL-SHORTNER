@@ -11,6 +11,7 @@ import { saveLink } from "./controller/shortLink.controller.js";
 import { getShortcode } from "./controller/getShortLink.contoller.js";
 import urlDb from "./models/shortLinkSchema.js";
 import { handelRefreshToken } from "./controller/refreshAccessToken.controller.js";
+import userDb from "./models/userSchema.js";
 dotenv.config();
 const app=express();
 app.use(cookieParser());
@@ -96,6 +97,10 @@ app.get("/profile",async (req,res)=>{
     return res.sendFile(profilePage);
     
 });
+app.get("/changePassword",async (req,res)=>{
+    const changePass=path.join(import.meta.dirname,"public","changePass.html");
+    return res.sendFile(changePass);
+})
 app.get("/error404",(req,res)=>{
     return res.sendFile(errorPage404);
 })
@@ -121,6 +126,17 @@ app.get("/:shortCode",async (req,res)=>{
             if (!/^https?:\/\//.test(shortCodeData.longLink)) {
             return res.status(400).send("Invalid URL");
             }
+
+        const id=req.user.id;
+        const userDetail=await userDb.findOne({_id:req.user.id});
+        let linkClicked=userDetail.linkClicked;
+        linkClicked=parseInt(linkClicked);
+        linkClicked+=1;
+        linkClicked=linkClicked.toString();
+        const updateClick=await userDb.findByIdAndUpdate(
+            id,
+            {linkClicked},
+        )
         res.redirect(shortCodeData.longLink);
     } catch (error) {
         console.log(error);

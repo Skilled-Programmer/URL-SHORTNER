@@ -2,6 +2,7 @@ import {nanoid} from "nanoid";
 import urlDb from "../models/shortLinkSchema.js";
 import userDb from "../models/userSchema.js";
 import { checkShortCodeLength, checkValidShortCode, isSafeUrl, normalizedLongLink } from "../services/auth.service.js";
+import { parse } from "dotenv";
 export const saveLink=async (req,res)=>{
     try{
         
@@ -40,6 +41,19 @@ export const saveLink=async (req,res)=>{
             longLink:normalizeLongLink,
             shortCode:shortCode,
         });
+        const id=req.user.id;
+        const userDetail=await userDb.findOne({_id:id});
+        console.log("old linkcreated:",userDetail.linkCreated);
+        let linkCreated=userDetail.linkCreated;
+        linkCreated=parseInt(linkCreated);
+        linkCreated+=1;
+        linkCreated=linkCreated.toString();
+        console.log("linkCreated:",linkCreated);
+        const updateData=await userDb.findByIdAndUpdate(
+            id,
+            {linkCreated},
+        )
+        console.log("updateData:",updateData);
         res.json({success:true,message:"ShortCode Created Succefully"});
     }catch(err){
         console.error(err);

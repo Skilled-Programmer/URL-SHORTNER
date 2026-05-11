@@ -5,6 +5,7 @@ import { deleteSc } from "../controller/deleteShortCode.controller.js";
 import { verifyAuthentication } from "../middleware/verify-auth.middleware.js";
 import { getShortCode, updateData } from "../controller/update.controller.js";
 import { getProfileData } from "../controller/profile.controller.js";
+import { changePass } from "../controller/changePass.controller.js";
 
 
 
@@ -17,4 +18,5 @@ route.get("/logout",removeToken);
 route.delete("/delete/:clickedShortCode",deleteSc);
 route.get("/getShortCode/:url",getShortCode);
 route.post("/updateLinks",updateData);
+route.post("/changePass",changePass);
 export const authRoute=route;   

@@ -54,4 +54,7 @@ const renderProfileInfo=(userDetail)=>{
     }
 }
 
+document.getElementById("changePassBtn").addEventListener("click",()=>{
+    return window.location.href="/changePassword";
+})
 getProfile();

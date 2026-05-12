@@ -38,7 +38,7 @@ const renderProfileInfo=(userDetail)=>{
             <div class="emailVerifyText"><p>Email Verification:</p></div>
             <div class="isVerified"><p class="isVerify"></p></div>
             <div class="verifyBtn">
-                <button>Verify Now</button>
+                <button id="verifyNow">Verify Now</button>
             </div>
         </div>
     `
@@ -47,14 +47,24 @@ const renderProfileInfo=(userDetail)=>{
     if(!userDetail.isVerify){
         document.querySelector(".isVerify").classList.add("false");
         document.querySelector(".isVerify").textContent="Not Verifed";
+        const verifyBtn=document.getElementById("verifyNow");
+        console.log("verifybtn:",verifyBtn);
+        verifyBtn.addEventListener("click",async ()=>{
+            try {
+               return window.location.href="/verifyEmailPage";
+            } catch (error) {
+        
+            }
+        });
     }else{
         document.querySelector(".isVerify").classList.add("true");
         document.querySelector(".isVerify").textContent="Verifed";
         document.querySelector(".verifyBtn").textContent='';
     }
 }
-
+getProfile();
 document.getElementById("changePassBtn").addEventListener("click",()=>{
     return window.location.href="/changePassword";
 })
-getProfile();
+
+

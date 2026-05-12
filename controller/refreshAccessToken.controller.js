@@ -9,7 +9,7 @@ export const handelRefreshToken=async(getSessionJwt,res)=>{
     try {
         refreshTokenData=jwt.verify(getSessionJwt,jwtSecret);
     } catch (error) {                                                           
-        console.error(error);
+        // console.error(error);
         res.clearCookie("accessToken");
         res.clearCookie("refreshToken");
         return false;

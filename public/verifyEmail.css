@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(243, 242, 242, 0.575);
+}
+.heading{
+    width: 100%;
+    text-align: center;
+    margin: 3rem 0;
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+.main{
+    margin: 0 auto;
+    width: 30rem;
+    height: 12rem;
+    /* border: 1px black solid; */
+    padding: 1.2rem;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 10 0px 0px rgb(245, 241, 241);
+}
+.myEmail{
+    margin: 0.9rem 0;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+.discription{
+    margin: 1.2rem 0;
+    color: rgb(77, 76, 76);
+    line-height: 1.3rem;
+} 
+.resendBtn{
+    display: flex;
+    justify-content: end;
+}
+.resendBtn button{
+    width: 11rem;
+    height: 2rem;
+    background-color: rgba(83, 83, 83, 0.678);
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.resendBtn button:hover{
+    transition: all 0.6s linear;
+    scale: 1.05;
+}
+.otpSection{
+    width: 30rem;
+    height: 8rem;
+    margin: 1rem auto;
+    padding: 1.2rem;
+    /* border: 1px solid black; */
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 10 0px 0px rgb(245, 241, 241);
+}
+.otpSection input{
+    width: 100%; 
+    height: 2.5rem;
+    padding-left: 1rem;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1.5px solid rgb(192, 192, 192);
+    font-weight: bold;
+}
+.otpBtn{
+    padding-left: 0.13rem;
+}
+.otpSection button{
+    margin: 1rem 0;
+    width: 6rem;
+    height: 2rem;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}

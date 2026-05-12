@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { nanoid } from "nanoid";
+
 import { deleteRefreshToken } from "../controller/refreshAccessToken.controller.js";
 const jwtSecret="urlShortnerJwtKey";
 
@@ -7,7 +8,7 @@ export const verifyJwtToken=(token)=>{
     try {
         return jwt.verify(token,jwtSecret);
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         return false;
     }
 };
@@ -84,4 +85,9 @@ export const normalizedLongLink=(longLink)=>{
         longLink = "https://" + longLink;
     }
     return longLink;
+}
+
+export const createVerifyEmailLink=(email,token)=>{
+    const encodedEmail=encodeURIComponent(email);
+    return `${"http://localhost:3000"}/verify-email-token?token=${token}&email=${encodedEmail}`;
 }

@@ -100,10 +100,14 @@ app.get("/profile",async (req,res)=>{
 app.get("/changePassword",async (req,res)=>{
     const changePass=path.join(import.meta.dirname,"public","changePass.html");
     return res.sendFile(changePass);
-})
+});
+app.get("/verifyEmailPage",(req,res)=>{
+    const verifyEmail=path.join(import.meta.dirname,"public","verifyEmail.html");
+    return res.sendFile(verifyEmail);
+});
 app.get("/error404",(req,res)=>{
     return res.sendFile(errorPage404);
-})
+});
 
 app.post("/shorten",saveLink);
 

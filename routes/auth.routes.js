@@ -6,6 +6,7 @@ import { verifyAuthentication } from "../middleware/verify-auth.middleware.js";
 import { getShortCode, updateData } from "../controller/update.controller.js";
 import { getProfileData } from "../controller/profile.controller.js";
 import { changePass } from "../controller/changePass.controller.js";
+import { generateOtp, getEmail } from "../controller/verifyEmai.controller.js";
 
 
 
@@ -19,4 +20,6 @@ route.delete("/delete/:clickedShortCode",deleteSc);
 route.get("/getShortCode/:url",getShortCode);
 route.post("/updateLinks",updateData);
 route.post("/changePass",changePass);
+route.get("/emailForVerify",getEmail);
+route.get("/generateOtp",generateOtp);
 export const authRoute=route;   

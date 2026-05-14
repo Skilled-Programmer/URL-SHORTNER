@@ -12,6 +12,7 @@ import { getShortcode } from "./controller/getShortLink.contoller.js";
 import urlDb from "./models/shortLinkSchema.js";
 import { handelRefreshToken } from "./controller/refreshAccessToken.controller.js";
 import userDb from "./models/userSchema.js";
+import { verifyThroughLink } from "./controller/verifyEmai.controller.js";
 dotenv.config();
 const app=express();
 app.use(cookieParser());
@@ -105,6 +106,14 @@ app.get("/verifyEmailPage",(req,res)=>{
     const verifyEmail=path.join(import.meta.dirname,"public","verifyEmail.html");
     return res.sendFile(verifyEmail);
 });
+app.get("/verify-email-token",async(req,res)=>{
+    const {email,token}=req.query;
+    const verifyLink=verifyThroughLink(email,token);
+    if(!verifyLink){
+        return res.json({success:false,message:"Verification Field"});
+    }
+    return res.redirect("/profile");
+});
 app.get("/error404",(req,res)=>{
     return res.sendFile(errorPage404);
 });
@@ -147,6 +156,7 @@ app.get("/:shortCode",async (req,res)=>{
         res.status(500).send("server error");
     }
 });
+
 app.get("/update/:url",async(req,res)=>{
     const updatePage=path.join(import.meta.dirname,"public","update.html");
     return res.sendFile(updatePage);

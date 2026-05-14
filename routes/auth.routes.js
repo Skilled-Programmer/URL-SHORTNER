@@ -6,7 +6,7 @@ import { verifyAuthentication } from "../middleware/verify-auth.middleware.js";
 import { getShortCode, updateData } from "../controller/update.controller.js";
 import { getProfileData } from "../controller/profile.controller.js";
 import { changePass } from "../controller/changePass.controller.js";
-import { generateOtp, getEmail } from "../controller/verifyEmai.controller.js";
+import { generateOtp, getEmail, verifyOtp, } from "../controller/verifyEmai.controller.js";
 
 
 
@@ -22,4 +22,5 @@ route.post("/updateLinks",updateData);
 route.post("/changePass",changePass);
 route.get("/emailForVerify",getEmail);
 route.get("/generateOtp",generateOtp);
+route.post("/verify-otp",verifyOtp);
 export const authRoute=route;   

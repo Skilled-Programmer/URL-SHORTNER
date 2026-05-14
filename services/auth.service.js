@@ -88,6 +88,10 @@ export const normalizedLongLink=(longLink)=>{
 }
 
 export const createVerifyEmailLink=(email,token)=>{
-    const encodedEmail=encodeURIComponent(email);
-    return `${"http://localhost:3000"}/verify-email-token?token=${token}&email=${encodedEmail}`;
+    // const encodedEmail=encodeURIComponent(email);
+    // return `${"http://localhost:3000"}/verify-email-token?token=${token}&email=${encodedEmail}`;
+    const url=new URL(`${"http://localhost:3000"}/verify-email-token`);
+    url.searchParams.append("token",token);
+    url.searchParams.append("email",email);
+    return url.toString();
 }

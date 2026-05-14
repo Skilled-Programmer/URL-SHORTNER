@@ -22,3 +22,27 @@ verifyNow.addEventListener("click",async ()=>{
         
     }
 });
+
+const verifyBtn=document.getElementById("verifyBtn");
+verifyBtn.addEventListener("click",async()=>{
+    const otp=document.getElementById("getOtp").value;
+    
+    try{
+        const res=await fetch("/verify-otp",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({otp}), 
+        });
+        const result=await res.json();
+        console.log(result);
+        if(result.success){
+            alert(result.message);
+            return window.location.href="/profile";
+        }
+
+    }catch(err){
+        console.error(err);
+    }
+}); 

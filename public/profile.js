@@ -48,7 +48,6 @@ const renderProfileInfo=(userDetail)=>{
         document.querySelector(".isVerify").classList.add("false");
         document.querySelector(".isVerify").textContent="Not Verifed";
         const verifyBtn=document.getElementById("verifyNow");
-        console.log("verifybtn:",verifyBtn);
         verifyBtn.addEventListener("click",async ()=>{
             try {
                return window.location.href="/verifyEmailPage";

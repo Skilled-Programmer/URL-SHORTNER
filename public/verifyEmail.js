@@ -40,6 +40,8 @@ verifyBtn.addEventListener("click",async()=>{
         if(result.success){
             alert(result.message);
             return window.location.href="/profile";
+        }else{
+            alert(result.message);
         }
 
     }catch(err){

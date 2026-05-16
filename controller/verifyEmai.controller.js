@@ -2,7 +2,9 @@ import crypto from "crypto";
 import emailVerifyDb from "../models/verifyEmailSchema.js";
 import userDb from "../models/userSchema.js";
 import { createVerifyEmailLink } from "../services/auth.service.js";
-import { sendEmail } from "../lib/nodemailer.js";
+import { sendEmail } from "../lib/sendEmail.js";
+// import { sendEmail } from "../lib/nodemailer.js";
+
 export const generateRandomOtp=()=>{
     const min=10 ** (7);
     const max=10 ** (8);
@@ -38,12 +40,7 @@ export const generateOtp=async(req,res)=>{
 }
 export const emailTimer=async(userId)=>{
     const dbOtp=await emailVerifyDb.findOne({userId});
-    console.log("dbOtp:",dbOtp);
-    // const sendTime=await ;
     const expiryTime=dbOtp.expiredAt.getTime();
-    console.log("expired time:",expiryTime);
-    // console.log("sending time:",sendTime);
-    // console.log("sending time:",expiryTime);
     if(Date.now()>expiryTime){
         return false;
     }else{
@@ -72,7 +69,6 @@ const ubdateOptDb=async(userId,randomOtp)=>{
 export const verifyOtp=async(req,res)=>{
     const {otp}=req.body;
     const checkValidaty=await emailTimer(req.user.id);
-    console.log("checkValidaty:",checkValidaty);
     const userEmail=req.user.email;
     const id=req.user.id;
     const getOtp=await emailVerifyDb.findOne({userId:id});
@@ -87,7 +83,7 @@ export const verifyOtp=async(req,res)=>{
             console.log("fail to update");
         }
     }else{
-        console.log("otp is invalid");
+        return res.json({success:false,message:"invalid otp"});
     }
      console.log("update if not called");
 }
@@ -99,6 +95,10 @@ export const verifyThroughLink=async(email,token)=>{
         return false;
     }
     const isExpired=isToken.expiredAt;
+    if(isExpired.getTime()<Date.now()){
+        console.log("otp expired");
+        return false;
+    }
     const checkEmail=await userDb.findOne({email});
     if(!checkEmail){
         console.log("invalid email");
